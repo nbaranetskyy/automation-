@@ -1,8 +1,12 @@
 import { test, expect } from '@playwright/test';
+import { LandingPage } from '../pages/Test-page';
+let landingPage;
 test('check test', async ({ page }) => {
-  await page.goto('https://playwright.dev/'); // Test 3
+    landingPage = new LandingPage(page);
+
+  await landingPage.gotoLandingPage();
   await expect(page).toHaveTitle('Fast and reliable end-to-end testing for modern web apps | Playwright'); 
-  await page.waitForTimeout(5000);
-  await page.getByRole('link', { name: 'Get started' }).click();
-  await page.waitForTimeout(5000);
+  await page.waitForTimeout(3000);
+  await landingPage.getStartedButton.click();
+  await page.waitForTimeout(3000);
 });
